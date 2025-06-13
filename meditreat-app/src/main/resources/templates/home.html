@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="#{home.title}">Home Page - MediTreat</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- jQuery UI CSS -->
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="/css/home.css">
+</head>
+
+<body>
+  <div class="container-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">MT</div>
+      <a href="/profile" class="nav-link" th:text="#{sidebar.profile}">Profile</a>
+      <a href="/all-treatments" class="nav-link" th:text="#{sidebar.allTreatments}">All Treatments</a>
+      <a href="/add-treatment" class="nav-link" th:text="#{sidebar.addTreatment}">Add Treatment</a>
+      <a href="/" class="nav-link logout-button" id="logoutButton" th:text="#{sidebar.logout}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="language-switch-container" style="text-align: right; margin-bottom: 10px;">
+        <button id="langEnButton" class="btn btn-sm btn-outline-secondary active">EN</button>
+        <button id="langBgButton" class="btn btn-sm btn-outline-secondary">BG</button>
+      </div>
+      <div class="text-left mb-4">
+        <h4 id="doctorName" th:text="#{home.doctorName}">Dr. Smith</h4>
+        <p class="text-muted" id="doctorSpecialty" th:text="#{home.doctorSpecialty}">General Practice</p>
+      </div>
+      <div class="text-center mb-4">
+        <h2 th:text="#{home.welcome}">Welcome to MediTreat</h2>
+        <p class="lead" th:text="#{home.enterIllness}">Enter your illness</p>
+      </div>
+      <!-- Search Section -->
+      <div class="search-container mb-4 text-center">
+        <div class="search-area">
+          <h4 th:text="#{home.symptomSearch}" class="mb-3">Symptom Search</h4>
+          <div class="input-group">
+            <input type="text" id="illnessInput" th:placeholder="#{home.illnessPlaceholder}" placeholder="Enter illness..." class="form-control">
+            <button id="searchButton" th:text="#{home.searchButton}" class="btn btn-custom">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Results -->
+      <div id="resultContainer" class="result-container" style="display: none;">
+        <h3 id="resultTitle" th:text="#{home.searchResults}">Search Results:</h3>
+        <p id="resultDescription"></p>
+        <div class="treatment-buttons">
+          <button class="btn-custom" id="medicalButton" th:text="#{home.medicalButton}" data-type-name-en="medical" data-type-name-bg="Медицинско">Medical</button>
+          <button class="btn-custom" id="homeopathicButton" th:text="#{home.homeopathicButton}" data-type-name-en="homeopathic" data-type-name-bg="Хомеопатично">Homeopathic</button>
+          <button class="btn-custom" id="phytotherapeuticButton" th:text="#{home.phytotherapeuticButton}" data-type-name-en="phytotherapeutic" data-type-name-bg="Фитотерапевтично">Phytotherapeutic</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span th:utext="#{footer.copyright}">&copy; 2024 Medical Treatment System</span>
+  </div>
+
+  <!-- Modals -->
+  <div class="modal fade" id="treatmentDetailModal" tabindex="-1" aria-labelledby="treatmentDetailModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="treatmentDetailModalLabel" th:text="#{modal.treatmentDetail.title}">Treatment Detail</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div id="treatmentDetailContent"></div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{modal.closeButton}">Close</button>
+          <button type="button" class="btn btn-primary-custom" id="sendEmailButton" style="display: none;" th:text="#{modal.sendEmailButton}">Send via E-mail</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="emailModal" tabindex="-1" aria-labelledby="emailModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="emailModalLabel" th:text="#{modal.sendTreatment.title}">Send Treatment Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form id="emailForm">
+            <div class="mb-3">
+              <label for="recipientEmail" class="form-label" th:text="#{form.emailLabel}">E-mail</label>
+              <input type="email" class="form-control" id="recipientEmail" th:placeholder="#{form.emailPlaceholder}" placeholder="Enter recipient's e-mail" required>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{modal.cancelButton}">Cancel</button>
+              <button type="submit" class="btn btn-primary-custom" th:text="#{modal.sendButton}">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <!-- jQuery UI JS -->
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+  <!-- Link to external JS -->
+  <script src="/js/home.js"></script>
+</body>
+
+</html>

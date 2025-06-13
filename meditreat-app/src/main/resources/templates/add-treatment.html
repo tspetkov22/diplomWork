@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="#{addTreatment.title}">Add New Treatment - MediTreat</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="/css/add-treatment.css">
+</head>
+
+<body>
+  <div class="container-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">MT</div>
+      <a href="/home" class="nav-link" th:text="#{sidebar.home}">Home</a>
+      <a href="/profile" class="nav-link" th:text="#{sidebar.profile}">Profile</a>
+      <a href="/all-treatments" class="nav-link" th:text="#{sidebar.treatments}">All Treatments</a>
+      <a href="/add-treatment" class="nav-link" th:text="#{sidebar.add}">Add Treatments</a>
+      <a href="/" class="nav-link logout-button" id="logoutButton" th:text="#{sidebar.logout}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="language-switch-container" style="text-align: right; margin-bottom: 10px;">
+        <button id="langEnButton" style="background-color: #8CDBC1!important;" class="btn btn-sm btn-outline-secondary" th:classappend="${currentLanguage == 'en'} ? 'active' : ''">EN</button>
+        <button id="langBgButton" style="background-color: #8CDBC1!important;" class="btn btn-sm btn-outline-secondary" th:classappend="${currentLanguage == 'bg'} ? 'active' : ''">BG</button>
+      </div>
+      <div>
+        <h2 class="text-center" th:text="#{addTreatment.header}">Add New Treatment</h2>
+        <p class="text-muted text-center" th:text="#{addTreatment.subHeader}">Enter details for a new treatment</p>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section mt-3 mb-3">
+        <form id="addTreatmentForm">
+          <h4 class="mb-4" th:text="#{addTreatment.form.header}">Treatment Information</h4>
+          
+          <!-- Language of this treatment entry -->
+          <input type="hidden" id="treatmentLanguage" th:value="${currentLanguage}">
+
+          <div class="mb-3">
+            <label for="treatmentName" class="form-label" th:text="#{addTreatment.form.nameLabel}">Name</label>
+            <input type="text" class="form-control" id="treatmentName" name="treatmentName" th:placeholder="#{addTreatment.form.namePlaceholder}" required>
+          </div>
+
+          <div class="mb-3">
+            <label for="treatmentType" class="form-label" th:text="#{addTreatment.form.typeLabel}">Treatment Type</label>
+            <select class="form-select" id="treatmentType" required>
+              <option value="" selected th:text="#{addTreatment.form.typeSelectOption}">Select a type</option>
+              <option th:each="type : ${treatmentTypes}" 
+                      th:value="${type.id}" 
+                      th:text="${type.name}">
+              </option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label for="symptomSearch" class="form-label" th:text="#{addTreatment.form.symptomsSearchLabel}">Search Symptoms</label>
+            <div class="input-group mb-2">
+              <input type="text" class="form-control" id="symptomSearch" th:placeholder="#{addTreatment.form.symptomsSearchPlaceholder}">
+              <button class="btn btn-outline-secondary" type="button" id="searchSymptomsBtn">
+                <i class="fas fa-search"></i>
+                <span th:text="#{home.searchButton}">Search</span>
+              </button>
+            </div>
+            <div id="symptomsDropdown" class="dropdown-menu w-100" style="display: none; max-height: 200px; overflow-y: auto;"></div>
+            
+            <label class="mt-3" th:text="#{addTreatment.form.symptomsSelectLabel}">Selected Symptoms</label>
+            <div id="selectedSymptoms" class="selected-symptoms mb-2"></div>
+            
+            <!-- Hidden input to store symptom data for form submission -->
+            <input type="hidden" id="symptoms" name="symptoms">
+            <div class="form-text" th:text="#{addTreatment.form.symptomsHelp}">New symptoms will be created in the current language.</div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="form-label" th:text="#{addTreatment.form.descriptionLabel}">Description</label>
+            <textarea class="form-control" id="description" rows="3" th:placeholder="#{addTreatment.form.descriptionPlaceholder}"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="usageInstructions" class="form-label" th:text="#{addTreatment.form.usageInstructionsLabel}">Usage Instructions</label>
+            <textarea class="form-control" id="usageInstructions" rows="3" th:placeholder="#{addTreatment.form.usagePlaceholder}"></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="recommendedDose" class="form-label" th:text="#{addTreatment.form.doseLabel}">Recommended Dose</label>
+            <input type="text" class="form-control" id="recommendedDose" th:placeholder="#{addTreatment.form.dosePlaceholder}">
+          </div>
+
+          <div class="text-center mt-4">
+            <button type="submit" class="btn btn-primary-custom" th:text="#{addTreatment.form.submitButton}">Add Treatment</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span th:utext="#{footer.copyright}">&copy; 2025 Medical Treatment System</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Link to external JS -->
+  <script src="/js/add-treatment.js"></script>
+</body>
+
+</html>

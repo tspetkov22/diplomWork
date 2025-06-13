@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="#{login.title}">MediTreat - Login</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="/css/login.css">
+</head>
+<body>
+  <div class="login-card">
+    <!-- Placeholder for logo -->
+    <div class="login-logo">
+      <div class="logo-inline">
+        <span class="logo-span">MT</span>
+      </div>
+    </div>
+    <div class="language-switch-container" style="text-align: right; margin-bottom: 10px; padding-right: 15px; padding-top: 10px;">
+        <button id="langEnButton" class="btn btn-sm btn-outline-secondary">EN</button>
+        <button id="langBgButton" class="btn btn-sm btn-outline-secondary">BG</button>
+    </div>
+    <h1 class="h5 mb-3" th:text="#{login.header}">MediTreat</h1>
+    <form id="loginForm">
+      <div class="mb-3 text-start">
+        <label for="email" class="form-label" th:text="#{login.emailLabel}">E-mail</label>
+        <input type="email" class="form-control login-input" id="email" required>
+      </div>
+      <div class="mb-3 text-start">
+        <label for="password" class="form-label" th:text="#{login.passwordLabel}">Password</label>
+        <input type="password" class="form-control login-input" id="password" required>
+      </div>
+      <button type="submit" class="btn login-button w-100" th:text="#{login.loginButton}">Login</button>
+    </form>
+    <div class="mt-3">
+      <button class="btn btn-link register-link" id="registerBtn" th:text="#{login.registerLink}">Register</button>
+    </div>
+  </div>
+
+  <!-- Registration Modal -->
+  <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="registerModalLabel" th:text="#{registerModal.title}">Register New Account</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form id="registerForm">
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="register-fullName" class="form-label" th:text="#{registerModal.fullNameLabel}">Full Name</label>
+              <input type="text" class="form-control rounded-xl" id="register-fullName" required>
+            </div>
+            <div class="mb-3">
+              <label for="register-email" class="form-label" th:text="#{registerModal.emailLabel}">E-mail</label>
+              <input type="email" class="form-control rounded-xl" id="register-email" required>
+            </div>
+            <div class="mb-3">
+              <label for="register-password" class="form-label" th:text="#{registerModal.passwordLabel}">Password</label>
+              <input type="password" class="form-control rounded-xl" id="register-password" required>
+            </div>
+            <div class="mb-3">
+              <label for="specialty" class="form-label" th:text="#{registerModal.specialtyLabel}">Specialty</label>
+              <input type="text" class="form-control rounded-xl" id="specialty" required>
+            </div>
+            <div class="mb-3">
+              <label for="license-number" class="form-label" th:text="#{registerModal.licenseNumberLabel}">License Number</label>
+              <input type="text" class="form-control rounded-xl" id="license-number" required>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-outline-secondary btn-outline-custom" data-bs-dismiss="modal" th:text="#{registerModal.cancelButton}">Cancel</button>
+            <button type="submit" class="btn btn-primary-custom" th:text="#{registerModal.registerButton}">Register</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Link to external JS -->
+  <script src="/js/login.js"></script>
+</body>
+</html>

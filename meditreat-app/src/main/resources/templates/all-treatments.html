@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="#{allTreatments.title}">All Treatments - MediTreat</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  <!-- Link to external CSS -->
+  <link rel="stylesheet" href="/css/all-treatments.css">
+</head>
+<body>
+  <div class="container-wrapper">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-logo">MT</div>
+      <a href="/home" class="nav-link" th:text="#{sidebar.home}">Home</a>
+      <a href="/profile" class="nav-link" th:text="#{sidebar.profile}">Profile</a>
+      <a href="/all-treatments" class="nav-link" th:text="#{sidebar.treatments}">All Treatments</a>
+      <a href="/add-treatment" class="nav-link" th:text="#{sidebar.add}">Add Treatments</a>
+      <a href="/" class="nav-link logout-button" id="logoutButton" th:text="#{sidebar.logout}">Logout</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="language-switch-container" style="text-align: right; margin-bottom: 10px;">
+        <button id="langEnButton" class="btn btn-sm btn-outline-secondary active">EN</button>
+        <button id="langBgButton" class="btn btn-sm btn-outline-secondary">BG</button>
+      </div>
+      <div>
+        <h2 class="text-center" th:text="#{allTreatments.header}">All Treatments</h2>
+        <p class="text-muted text-center" th:text="#{allTreatments.subHeader}">Manage and view all treatments</p>
+      </div>
+
+      <!-- Search Bar -->
+      <div class="search-container">
+        <input type="text" id="searchInput" th:placeholder="#{allTreatments.searchPlaceholder}" placeholder="Search treatments...">
+        <button class="btn-custom" onclick="searchTreatments()" th:text="#{allTreatments.searchButton}">Search</button>
+      </div>
+
+      <!-- Treatments List -->
+      <div class="table-container mt-3">
+        <table class="table">
+          <thead>
+            <tr>
+              <th th:text="#{allTreatments.table.name}">Name</th>
+              <th th:text="#{allTreatments.table.type}">Type</th>
+              <th th:text="#{allTreatments.table.actions}">Actions</th>
+            </tr>
+          </thead>
+          <tbody id="treatmentTable">
+            <!-- Static example rows will be cleared by JS -->
+            <!-- Treatments will be dynamically populated here -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Treatment Modal -->
+  <div class="modal fade" id="editTreatmentModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" th:text="#{allTreatments.modal.editTitle}">Edit Treatment</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <form id="editTreatmentFormInModal">
+            <input type="hidden" id="editTreatmentId" name="id">
+            <input type="hidden" id="editFormLanguage" name="formLanguage">
+
+            <div class="row mb-3">
+              <div class="col-md-6">
+                <label for="editTreatmentNameEn" class="form-label" th:text="#{editTreatment.form.nameEnLabel}">Name (English)</label>
+                <input type="text" class="form-control" id="editTreatmentNameEn" name="nameEn" th:placeholder="#{editTreatment.form.nameEnPlaceholder}">
+              </div>
+              <div class="col-md-6">
+                <label for="editTreatmentNameBg" class="form-label" th:text="#{editTreatment.form.nameBgLabel}">Name (Bulgarian)</label>
+                <input type="text" class="form-control" id="editTreatmentNameBg" name="nameBg" th:placeholder="#{editTreatment.form.nameBgPlaceholder}">
+              </div>
+            </div>
+
+            <div class="mb-3">
+              <label for="editTreatmentType" class="form-label" th:text="#{editTreatment.form.typeLabel}">Treatment Type</label>
+              <select class="form-select" id="editTreatmentType" name="typeId" required>
+                <option value="" th:text="#{editTreatment.form.typeSelectOption}">Select a type</option>
+              </select>
+            </div>
+
+            <div class="mb-3">
+              <label for="editSymptomSearch" class="form-label" th:text="#{editTreatment.form.symptomsSearchLabel}">Search Symptoms</label>
+              <div class="input-group mb-2">
+                <input type="text" class="form-control" id="editSymptomSearch" th:placeholder="#{editTreatment.form.symptomsSearchPlaceholder}">
+                <button class="btn btn-primary-custom" type="button" id="editSearchSymptomsBtn">
+                  <i class="fas fa-search"></i>
+                  <span th:text="#{home.searchButton}">Search</span>
+                </button>
+              </div>
+              <div id="editSymptomsDropdown" class="dropdown-menu w-100" style="display: none; max-height: 150px; overflow-y: auto;"></div>
+              
+              <label class="mt-2" th:text="#{editTreatment.form.symptomsSelectLabel}">Selected Symptoms</label>
+              <div id="editSelectedSymptoms" class="selected-symptoms mb-2" style="min-height: 38px; border: 1px solid #ced4da; padding: .375rem .75rem; border-radius: .25rem;">
+              </div>
+              <input type="hidden" id="editSymptoms" name="symptoms">
+              <div class="form-text" th:text="#{editTreatment.form.symptomsHelp}">New symptoms will be created in the current language.</div>
+            </div>
+
+            <div class="mb-3">
+              <label for="editDescription" class="form-label" th:text="#{editTreatment.form.descriptionEnLabel}">Description</label>
+              <textarea class="form-control" id="editDescription" name="description" rows="3" th:placeholder="#{editTreatment.form.descriptionEnPlaceholder}"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="editUsageInstructions" class="form-label" th:text="#{editTreatment.form.usageEnLabel}">Usage Instructions</label>
+              <textarea class="form-control" id="editUsageInstructions" name="usageInstructions" rows="3" th:placeholder="#{editTreatment.form.usageEnPlaceholder}"></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="editRecommendedDose" class="form-label" th:text="#{editTreatment.form.doseLabel}">Recommended Dose</label>
+              <input type="text" class="form-control" id="editRecommendedDose" name="recommendedDose" th:placeholder="#{editTreatment.form.dosePlaceholder}">
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" th:text="#{allTreatments.modal.cancelButton}">Cancel</button>
+          <button type="button" class="btn btn-primary-custom" id="saveTreatmentChangesBtn" th:text="#{allTreatments.modal.saveButton}">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <span th:utext="#{footer.copyright}">&copy; 2025 Medical Treatment System</span>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- Link to external JS -->
+  <script src="/js/all-treatments.js"></script>
+</body>
+</html>
