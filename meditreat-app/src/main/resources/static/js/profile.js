@@ -3,6 +3,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const langEnButton = document.getElementById('langEnButton');
     const langBgButton = document.getElementById('langBgButton');
 
+    function activateLang(btn) {
+        langEnButton.classList.remove('lang-active');
+        langBgButton.classList.remove('lang-active');
+         btn.classList.add('lang-active');
+     }
+
     function setLanguage(lang) {
         localStorage.setItem('currentLanguage', lang);
         const currentSearchParams = new URLSearchParams(window.location.search);
@@ -11,20 +17,25 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     if (langEnButton) {
-        langEnButton.addEventListener('click', () => setLanguage('en'));
+        langEnButton.addEventListener('click', () => {activateLang(langEnButton); setLanguage('en')});
     }
     if (langBgButton) {
-        langBgButton.addEventListener('click', () => setLanguage('bg'));
+        langBgButton.addEventListener('click', () => {activateLang(langBgButton); setLanguage('bg')});
     }
 
     const initialLang = new URLSearchParams(window.location.search).get('lang') || localStorage.getItem('currentLanguage') || 'en';
-    if (initialLang === 'en') {
-        if(langEnButton) langEnButton.classList.add('active');
-        if(langBgButton) langBgButton.classList.remove('active');
+    if (initialLang === 'bg') {
+    activateLang(langBgButton);
     } else {
-        if(langEnButton) langEnButton.classList.remove('active');
-        if(langBgButton) langBgButton.classList.add('active');
+    activateLang(langEnButton);
     }
+    // if (initialLang === 'en') {
+    //     if(langEnButton) langEnButton.classList.add('active');
+    //     if(langBgButton) langBgButton.classList.remove('active');
+    // } else {
+    //     if(langEnButton) langEnButton.classList.remove('active');
+    //     if(langBgButton) langBgButton.classList.add('active');
+    // }
     if (!new URLSearchParams(window.location.search).get('lang')) {
         localStorage.setItem('currentLanguage', initialLang);
     }

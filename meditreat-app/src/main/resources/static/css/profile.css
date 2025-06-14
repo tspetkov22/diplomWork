@@ -87,3 +87,9 @@ body {
 .form-control {
   border-radius: 0.5rem;
 }
+
+.btn-outline-secondary.lang-active {
+  background-color: #8CDBC1 !important;
+  color: #ffffff      !important;
+  border-color: #8CDBC1 !important;
+}

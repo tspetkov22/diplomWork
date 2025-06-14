@@ -1,0 +1,91 @@
+body {
+    background-color: #E8F4F2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .login-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+  }
+  
+  .login-logo {
+    margin-bottom: 1rem;
+  }
+  
+  /* Converted inline styles from the logo element */
+  .logo-inline {
+    width: 50px;
+    height: 50px;
+    background-color: #8CDBC1;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+  }
+  
+  /* Converted inline styles from the logo span */
+  .logo-span {
+    color: white;
+    font-weight: bold;
+  }
+  
+  .login-input {
+    border-radius: 1rem;
+  }
+  
+  .login-button {
+    background-color: #8CDBC1;
+    border: none;
+    border-radius: 1rem;
+    height: 45px;
+  }
+  
+  .login-button:hover {
+    background-color: #7BC9AF;
+  }
+  
+  .register-link {
+    color: #8CDBC1;
+    text-decoration: none;
+    font-size: 0.9rem;
+  }
+  
+  .register-link:hover {
+    color: #7BC9AF;
+  }
+  
+  .modal-content {
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-primary-custom {
+    background-color: #8CDBC1;
+    border: none;
+    border-radius: 1rem;
+  }
+  
+  .btn-primary-custom:hover {
+    background-color: #7BC9AF;
+  }
+  
+  .btn-outline-custom {
+    border-radius: 1rem;
+  }
+  
+  /* Active language button — teal background, white text */
+.btn-outline-secondary.lang-active {
+  background-color: #8CDBC1 !important;
+  color: #ffffff !important;
+  border-color: #8CDBC1 !important;
+}

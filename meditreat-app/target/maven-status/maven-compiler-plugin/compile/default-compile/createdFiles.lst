@@ -10,6 +10,7 @@ com\meditreat\app\dto\TreatmentFormViewModel.class
 com\meditreat\app\config\I18nConfig.class
 com\meditreat\app\service\DoctorService.class
 com\meditreat\app\controller\LoginController.class
+com\meditreat\app\service\SearchIndexService.class
 com\meditreat\app\config\DoctorInitializer.class
 com\meditreat\app\service\TreatmentService.class
 com\meditreat\app\repository\DoctorRepository.class
@@ -30,5 +31,6 @@ com\meditreat\model\Treatment.class
 com\meditreat\app\dto\TreatmentTypeDto.class
 com\meditreat\app\config\TreatmentTypeInitializer.class
 com\meditreat\app\MeditreatAppApplication.class
+com\meditreat\app\controller\DoctorController.class
 com\meditreat\model\TreatmentType.class
 com\meditreat\app\entity\Doctor.class

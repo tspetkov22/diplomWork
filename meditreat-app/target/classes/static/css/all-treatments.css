@@ -1,0 +1,134 @@
+body {
+  background-color: #E8F4F2;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-wrapper {
+  display: flex;
+  flex: 1;
+  margin: 1rem;
+}
+
+.sidebar {
+  background-color: #8CDBC1;
+  width: 80px;
+  padding: 1rem 0.5rem;
+  color: white;
+  text-align: center;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.sidebar-logo {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8CDBC1;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  margin: 1rem 0;
+  cursor: pointer;
+  color: white;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-custom {
+  background-color: #8CDBC1;
+  border: none;
+  border-radius: 0.75rem;
+  color: white;
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.btn-custom:hover {
+  background-color: #7BC9AF;
+}
+
+.footer {
+  background-color: #8CDBC1;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  flex-shrink: 0;
+}
+
+.table-container {
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 1rem;
+  border: 1px solid #ccc;
+  padding: 1rem;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.search-container input {
+  width: 50%;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  height: 38px;
+}
+
+.search-container button {
+  height: 38px;
+}
+
+.table th,
+.table td {
+  text-align: center;
+  vertical-align: middle;
+  width: 33.3%;
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #8CDBC1;
+}
+
+.action-btn:hover {
+  color: #7BC9AF;
+}

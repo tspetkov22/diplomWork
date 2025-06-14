@@ -1,0 +1,173 @@
+body {
+  background-color: #E8F4F2;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-wrapper {
+  display: flex;
+  flex: 1;
+  margin: 1rem;
+}
+
+.sidebar {
+  background-color: #8CDBC1;
+  width: 80px;
+  padding: 1rem 0.5rem;
+  color: white;
+  text-align: center;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.sidebar-logo {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8CDBC1;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  margin: 1rem 0;
+  cursor: pointer;
+  color: white;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.btn-primary-custom {
+  background-color: #8CDBC1;
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.btn-primary-custom:hover {
+  background-color: #7BC9AF;
+}
+
+.form-section {
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: #FFFFFF; /* Changed to white */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-height: 400px; /* Confines the height of the form */
+  overflow-y: auto; /* Adds scrollbar for content overflow */
+}
+
+.form-section::-webkit-scrollbar {
+  width: 8px; /* Adjust scrollbar width */
+}
+
+.form-section::-webkit-scrollbar-track {
+  background: #EEF7F5; /* Light track color */
+  border-radius: 4px;
+}
+
+.form-section::-webkit-scrollbar-thumb {
+  background: #8CDBC1; /* Scrollbar thumb color */
+  border-radius: 4px;
+}
+
+.form-section::-webkit-scrollbar-thumb:hover {
+  background: #7BC9AF; /* Hover color for the scrollbar thumb */
+}
+
+.form-label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.footer {
+  background-color: #8CDBC1;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  flex-shrink: 0;
+}
+
+.form-control,
+.form-select {
+  border-radius: 0.5rem;
+}
+
+/* Symptoms dropdown and selection styling */
+#symptomsDropdown {
+  border-radius: 0.5rem;
+  border: 1px solid #ced4da;
+  padding: 0;
+  z-index: 1000;
+}
+
+#symptomsDropdown .dropdown-item {
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+#symptomsDropdown .dropdown-item:hover {
+  background-color: #E8F4F2;
+}
+
+.selected-symptoms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  min-height: 38px;
+  padding: 0.375rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.5rem;
+  background-color: #f8f9fa;
+}
+
+.symptom-tag {
+  display: inline-flex;
+  align-items: center;
+  background-color: #8CDBC1;
+  color: white;
+  border-radius: 16px;
+  padding: 0.25rem 0.75rem;
+}
+
+.symptom-tag .remove-symptom {
+  margin-left: 6px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.symptom-tag .remove-symptom:hover {
+  color: #ff6b6b;
+}

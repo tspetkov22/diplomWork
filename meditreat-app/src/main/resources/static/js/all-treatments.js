@@ -16,27 +16,67 @@ $(document).ready(function () {
     const langBgButton = document.getElementById('langBgButton');
 
     function updateLanguageUI(lang) {
-        currentLanguage = lang;
-        if (lang === 'en') {
-            if(langEnButton) {
-                langEnButton.classList.add('active');
-                langEnButton.setAttribute('aria-pressed', 'true');
-            }
-            if(langBgButton) {
-                langBgButton.classList.remove('active');
-                langBgButton.setAttribute('aria-pressed', 'false');
-            }
-        } else {
-            if(langEnButton) {
-                langEnButton.classList.remove('active');
-                langEnButton.setAttribute('aria-pressed', 'false');
-            }
-            if(langBgButton) {
-                langBgButton.classList.add('active');
-                langBgButton.setAttribute('aria-pressed', 'true');
+    currentLanguage = lang;
+
+    if (lang === 'en') {
+        // EN active
+        if (langEnButton) {
+            langEnButton.style.backgroundColor = '#8CDBC1';
+            langEnButton.style.color           = '#fff';
+            // langEnButton.style.borderColor     = '#8CDBC1';
+            // langEnButton.style.borderRadius    = '0.75rem';
+            langEnButton.setAttribute('aria-pressed', 'true');
+        }
+        // BG inactive
+        if (langBgButton) {
+            langBgButton.style.backgroundColor = '#fff';
+            langBgButton.style.color           = '#6c757cd';
+            // langBgButton.style.borderColor     = '#8CDBC1';
+            // langBgButton.style.borderRadius    = '0.75rem';
+            langBgButton.setAttribute('aria-pressed', 'false');
+        }
+    } else {
+        // BG active
+        if (langBgButton) {
+            langBgButton.style.backgroundColor = '#8CDBC1';
+            langBgButton.style.color           = '#fff';
+            // langBgButton.style.borderColor     = '#8CDBC1';
+            // langBgButton.style.borderRadius    = '0.75rem';
+            langBgButton.setAttribute('aria-pressed', 'true');
+        }
+        // EN inactive
+        if (langEnButton) {
+            langEnButton.style.backgroundColor = '#fff';
+            langEnButton.style.color           = 'grey';
+            // langEnButton.style.borderColor     = '#8CDBC1';
+            // langEnButton.style.borderRadius    = '0.75rem';
+            langEnButton.setAttribute('aria-pressed', 'false');
             }
         }
     }
+
+    // function updateLanguageUI(lang) {
+    //     currentLanguage = lang;
+    //     if (lang === 'en') {
+    //         if(langEnButton) {
+    //             langEnButton.classList.add('active');
+    //             langEnButton.setAttribute('aria-pressed', 'true');
+    //         }
+    //         if(langBgButton) {
+    //             langBgButton.classList.remove('active');
+    //             langBgButton.setAttribute('aria-pressed', 'false');
+    //         }
+    //     } else {
+    //         if(langEnButton) {
+    //             langEnButton.classList.remove('active');
+    //             langEnButton.setAttribute('aria-pressed', 'false');
+    //         }
+    //         if(langBgButton) {
+    //             langBgButton.classList.add('active');
+    //             langBgButton.setAttribute('aria-pressed', 'true');
+    //         }
+    //     }
+    // }
     
     function setLanguage(lang) {
         localStorage.setItem('currentLanguage', lang);
@@ -169,12 +209,18 @@ function renderTreatmentsTable(treatments) {
         editButton.classList.add('btn', 'btn-sm', 'btn-success', 'edit-btn', 'me-1');
         editButton.innerHTML = '<i class="fas fa-edit"></i> ' + (currentLanguage === 'bg' ? 'Редакт.' : 'Edit');
         editButton.dataset.id = treatment.id;
+        editButton.style.backgroundColor = '#8CDBC1';
+        editButton.style.borderColor = '#8CDBC1';
+        editButton.style.borderRadius = 0.75 + 'rem';
         actionsCell.appendChild(editButton);
 
         const deleteButton = document.createElement('button');
         deleteButton.classList.add('btn', 'btn-sm', 'btn-success', 'delete-btn');
         deleteButton.innerHTML = '<i class="fas fa-trash"></i> ' + (currentLanguage === 'bg' ? 'Изтрий' : 'Delete');
         deleteButton.dataset.id = treatment.id;
+        deleteButton.style.backgroundColor = '#8CDBC1';
+        deleteButton.style.borderColor = '#8CDBC1';
+        deleteButton.style.borderRadius = 0.75 + 'rem';
         actionsCell.appendChild(deleteButton);
     });
 

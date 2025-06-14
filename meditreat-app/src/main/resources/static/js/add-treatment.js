@@ -33,9 +33,13 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateButtonStates() {
         if (currentLanguage === 'en') {
             if(langEnButton) langEnButton.classList.add('active');
-            if(langBgButton) langBgButton.classList.remove('active');
+            if(langBgButton) langBgButton.classList.remove('active')
+                langBgButton.style.backgroundColor = '#fff';
+                langBgButton.style.color = 'grey';
         } else {
             if(langEnButton) langEnButton.classList.remove('active');
+            langEnButton.style.backgroundColor = '#fff';
+            langEnButton.style.color = 'grey';
             if(langBgButton) langBgButton.classList.add('active');
         }
     }

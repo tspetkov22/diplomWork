@@ -1,0 +1,95 @@
+body {
+  background-color: #E8F4F2;
+  margin: 0;
+  padding: 0;
+  height: 100vh; /* Ensures full viewport height */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden; /* Removes scrollbar */
+}
+
+.container-wrapper {
+  display: flex;
+  flex: 1;
+  margin: 1rem;
+}
+
+.sidebar {
+  background-color: #8CDBC1;
+  width: 80px;
+  padding: 1rem 0.5rem;
+  color: white;
+  text-align: center;
+  border-radius: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.sidebar-logo {
+  width: 50px;
+  height: 50px;
+  background-color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #8CDBC1;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.nav-link {
+  margin: 1rem 0;
+  cursor: pointer;
+  color: white;
+}
+
+.logout-button {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: white;
+  margin-top: auto;
+}
+
+.main-content {
+  flex: 1;
+  padding: 1.5rem;
+  border-radius: 1.5rem;
+  background: white;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Ensures content fits within viewport */
+}
+
+.profile-section {
+  margin: auto;
+  padding: 2rem;
+  border-radius: 1.5rem;
+  background-color: white;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+}
+
+.footer {
+  background-color: #8CDBC1;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  border-radius: 1.5rem;
+  margin: 1rem;
+  flex-shrink: 0;
+}
+
+.form-control {
+  border-radius: 0.5rem;
+}
+
+.btn-outline-secondary.lang-active {
+  background-color: #8CDBC1 !important;
+  color: #ffffff      !important;
+  border-color: #8CDBC1 !important;
+}
