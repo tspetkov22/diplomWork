@@ -19,10 +19,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateButtonStates() {
       if (currentLanguage === 'en') {
           if(langEnButton) langEnButton.classList.add('active');
+            langEnButton.style.backgroundColor = '#8CDBC1';
+            langEnButton.style.color = '#fff';
           if(langBgButton) langBgButton.classList.remove('active');
+            langBgButton.style.backgroundColor = '#fff';
+            langBgButton.style.color = 'grey';
       } else {
           if(langEnButton) langEnButton.classList.remove('active');
+            langEnButton.style.backgroundColor = '#fff';
+            langEnButton.style.color = 'grey';
           if(langBgButton) langBgButton.classList.add('active');
+            langBgButton.style.backgroundColor = '#8CDBC1';
+            langBgButton.style.color = '#fff';
       }
     }
 
@@ -164,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function() {
                         if (treatmentButtons) treatmentButtons.style.display = 'none';
                         if (resultDescription) resultDescription.style.display = 'none'; 
                         
-                        if (symptoms.length > 0) {
+                        if (symptoms && symptoms.length > 0) {
                             currentSearchedSymptom = symptoms[0]; 
                             console.log("Symptom found via AJAX:", currentSearchedSymptom); // DEBUG
                             if(resultContainer) resultContainer.style.display = 'block';
