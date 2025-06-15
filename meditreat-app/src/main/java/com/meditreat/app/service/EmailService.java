@@ -61,7 +61,7 @@ public class EmailService {
                 if ("bg".equalsIgnoreCase(emailLang)) {
                         subject = "Информация за лечение относно " + symptomNames + " от Д-р " + doctorFullName;
                         body = String.format(
-                                        "Уважаеми Пациенте,\n\nД-р %s Ви изпраща следната информация за лечение относно %s:\n\nЛечение: %s\nОписание: %s\nНачин на употреба: %s\n\nМоля, консултирайте се с Вашия лекар за допълнителни въпроси.",
+                                        "Уважаеми Пациент,\n\nД-р %s Ви изпраща следната информация за лечение относно %s:\n\nЛечение: %s\nОписание: %s\nНачин на употреба: %s\n\nМоля, консултирайте се с Вашия лекар за допълнителни въпроси.",
                                         doctorFullName, symptomNames, treatmentName, treatmentDescription,
                                         treatmentWayOfUse);
                 } else { // Default to English
